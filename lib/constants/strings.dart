@@ -1,0 +1,19 @@
+import 'package:laundry_app/models/onbording_model.dart';
+
+List<OnboardingModel> onboardings = [
+  OnboardingModel(
+    imageBg: 'assets/images/onboarding_1.png',
+    title: 'Convenient Laundry Booking',
+    subTitle: 'With washwisee, schedule pickups at your convenience.',
+  ),
+  OnboardingModel(
+    imageBg: 'assets/images/onboarding2.png',
+    title: 'Affordable and Reliable Service',
+    subTitle: 'Trustworthy professionals handle your laundry with care.',
+  ),
+  OnboardingModel(
+    imageBg: 'assets/images/onboarding_3.png',
+    title: 'No time for laundry?',
+    subTitle: 'Digitalize your laundry service with washwisee.',
+  ),
+];

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:laundry_app/constants/constant.dart';
 import 'package:laundry_app/widgets/google_login_btn.dart';
+import 'package:laundry_app/widgets/text_field.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -11,6 +13,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _remember = false;
+  bool _obscure = false;
 
 ////METHODS
   void backAction() {
@@ -20,6 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Container(
         margin: const EdgeInsets.symmetric(
           vertical: 60,
@@ -46,36 +50,35 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 10),
               const Text('Please enter your details to login.'),
               const SizedBox(height: 30),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Email address',
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(32),
-                    borderSide: const BorderSide(width: 0.2),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(32),
-                    borderSide: const BorderSide(width: 0.2),
-                  ),
-                ),
-                style: const TextStyle(fontWeight: FontWeight.w400),
+              ReusableTextField(
+                hintText: 'Email address',
+                obscure: false,
+                iconButton: null,
+                onTap: () {},
               ),
               const SizedBox(
                 height: 20,
               ),
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  hintText: 'Password',
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(32),
-                    borderSide: const BorderSide(width: 0.2),
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(32),
-                    borderSide: const BorderSide(width: 0.2),
-                  ),
+              ReusableTextField(
+                hintText: 'Password',
+                obscure: false,
+                iconButton: InkWell(
+                  onTap: () {
+                    setState(() {
+                      _obscure = !_obscure;
+                    });
+                  },
+                  child: _obscure
+                      ? const Icon(
+                          Icons.visibility_off_outlined,
+                          size: 15,
+                        )
+                      : const Icon(
+                          Icons.visibility_outlined,
+                          size: 15,
+                        ),
                 ),
+                onTap: () {},
               ),
               const SizedBox(height: 8),
               Row(
@@ -90,12 +93,15 @@ class _LoginScreenState extends State<LoginScreen> {
                               _remember = value!;
                             });
                           }),
-                      const Text('Remember me'),
+                      Text(
+                        'Remember me',
+                        style: GoogleFonts.livvic(fontSize: 14),
+                      ),
                     ],
                   ),
-                  const Text(
+                  Text(
                     'Forgot password?',
-                    style: TextStyle(
+                    style: GoogleFonts.livvic(
                         fontWeight: FontWeight.w600, color: AppColors.primary),
                   ),
                 ],
@@ -108,31 +114,47 @@ class _LoginScreenState extends State<LoginScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
                     foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
                     padding: const EdgeInsets.symmetric(vertical: 16),
                   ),
                   child: const Text(
                     'Login',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                   ),
                 ),
               ),
               const SizedBox(height: 20),
-              const Center(
-                child: Text('OR'),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Divider(
+                    thickness: 1,
+                    color: Colors.black38,
+                  ),
+                  Text('OR'),
+                  Divider(
+                    thickness: 1,
+                    color: Colors.black38,
+                  ),
+                ],
               ),
               const SizedBox(height: 20),
               const GoogleloginBtn(),
               const SizedBox(height: 20),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     'Don’t have an account?',
-                    style: TextStyle(color: AppColors.primary, fontSize: 18),
+                    style: GoogleFonts.livvic(
+                        color: AppColors.primary, fontSize: 14),
                   ),
                   Text(
-                    'Sign up',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ' Sign up',
+                    style: GoogleFonts.livvic(
+                        fontSize: 14, fontWeight: FontWeight.w600),
                   )
                 ],
               )
