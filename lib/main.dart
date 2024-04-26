@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:laundry_app/views/home/home_screen.dart';
+import 'package:laundry_app/splash_screen.dart';
 
 final theme = ThemeData(
-  useMaterial3: true,
+  useMaterial3: false,
   textTheme: GoogleFonts.aBeeZeeTextTheme(),
 );
 
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: theme,
-      home: const HomePage(),
+      home: const SplashScreen(),
     );
   }
 }
