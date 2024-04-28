@@ -15,7 +15,6 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _remember = false;
   bool _obscure = false;
 
-////METHODS
   void backAction() {
     Navigator.of(context).pop();
   }
