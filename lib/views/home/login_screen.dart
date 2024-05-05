@@ -15,31 +15,27 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _remember = false;
   bool _obscure = false;
 
-////METHODS
-  void backAction() {
-    Navigator.of(context).pop();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final device = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        toolbarHeight: device.height / 8,
+        elevation: 0,
+      ),
       backgroundColor: Colors.white,
       body: Container(
         margin: const EdgeInsets.symmetric(
-          vertical: 60,
+          vertical: 20,
           horizontal: 20,
         ),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              GestureDetector(
-                onTap: backAction,
-                child: const Icon(
-                  Icons.arrow_back,
-                ),
-              ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 20),
               const Text(
                 'Welcome back',
                 style: TextStyle(

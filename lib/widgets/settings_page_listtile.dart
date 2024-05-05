@@ -7,10 +7,12 @@ class SettingslistTile extends StatelessWidget {
     super.key,
     required this.svgPath,
     required this.title,
+    this.onTap,
   });
 
   final String svgPath;
   final String title;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,7 @@ class SettingslistTile extends StatelessWidget {
           border: Border.all(width: 0.2),
         ),
         child: ListTile(
+          onTap: onTap,
           leading: SizedBox(
             height: 20,
             width: 20,

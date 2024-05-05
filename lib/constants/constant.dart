@@ -18,4 +18,5 @@ class SvgIcon {
   static const logout = 'assets/svg_icons/logout.svg';
   static const notification = 'assets/svg_icons/notification.svg';
   static const user = 'assets/svg_icons/user.svg';
+  static const edit = 'assets/svg_icons/edit-02.svg';
 }
