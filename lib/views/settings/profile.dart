@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:laundry_app/constants/constant.dart';
+import 'package:laundry_app/widgets/button_tile.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -8,36 +9,21 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final device = MediaQuery.of(context).size;
-    void backAction() {
-      Navigator.of(context).pop();
-    }
 
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Container(
-        margin: const EdgeInsets.symmetric(
-          vertical: 60,
-          horizontal: 20,
-        ),
+      appBar: AppBar(
+        title: const Text('Profile'),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        centerTitle: true,
+        toolbarHeight: device.height / 8,
+        elevation: 0,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Row(
-                children: [
-                  GestureDetector(
-                    onTap: backAction,
-                    child: const Icon(
-                      Icons.arrow_back,
-                    ),
-                  ),
-                  SizedBox(width: device.width / 3.1),
-                  const Text(
-                    'Profile',
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 40),
               SizedBox.square(
                 dimension: 130,
                 child: Stack(
@@ -86,6 +72,22 @@ class ProfileScreen extends StatelessWidget {
               ),
               const SizedBox(
                 height: 20,
+              ),
+              ListView(
+                shrinkWrap: true,
+                children: const [
+                  ButtonTile(
+                    text: 'Save Changes',
+                    textColor: Colors.white,
+                    buttonColor: AppColors.primary,
+                  ),
+                  SizedBox(height: 12),
+                  ButtonTile(
+                    text: 'Cancel',
+                    textColor: AppColors.primary,
+                    borderColor: Colors.black,
+                  ),
+                ],
               ),
             ],
           ),
