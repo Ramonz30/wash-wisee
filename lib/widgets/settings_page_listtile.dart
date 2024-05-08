@@ -18,27 +18,56 @@ class SettingslistTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 12.0),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(width: 0.2),
-        ),
-        child: ListTile(
-          onTap: onTap,
-          leading: SizedBox(
-            height: 20,
-            width: 20,
-            child: SvgPicture.asset(svgPath),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          height: 55,
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(width: 0.5),
           ),
-          title: Text(
-            title,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          child: Row(
+            children: [
+              SizedBox(
+                height: 20,
+                width: 20,
+                child: SvgPicture.asset(svgPath),
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              Text(
+                title,
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+              const Spacer(),
+              SvgPicture.asset(
+                SvgIcon.action,
+                height: 15,
+                width: 15,
+              ),
+            ],
           ),
-          trailing: SizedBox(
-            height: 20,
-            width: 20,
-            child: SvgPicture.asset(SvgIcon.action),
-          ),
+          // child: ListTile(
+          //   onTap: onTap,
+          //   leading: SizedBox(
+          //     height: 20,
+          //     width: 20,
+          //     child: SvgPicture.asset(svgPath),
+          //   ),
+          //   title: Text(
+          //     title,
+          //     style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+          //   ),
+          //   trailing: SvgPicture.asset(
+          //     SvgIcon.action,
+          //     height: 15,
+          //     width: 15,
+          //   ),
+          // ),
         ),
       ),
     );

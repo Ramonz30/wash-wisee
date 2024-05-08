@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:laundry_app/constants/strings.dart';
 import 'package:laundry_app/views/home/login_screen.dart';
@@ -15,6 +16,15 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+  CarouselController buttonCarouselController = CarouselController();
+  final ScrollController _scrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   final PageController _pageController = PageController();
   int _currentPage = 0;
 
@@ -24,12 +34,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   void initState() {
     super.initState();
     _startAutoScroll();
-  }
-
-  @override
-  void dispose() {
-    _stopAutoScroll();
-    super.dispose();
   }
 
   void _startAutoScroll() {
@@ -66,33 +70,47 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             height: MediaQuery.of(context).size.height / 1.4,
             child: Stack(
               children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 1.4,
-                  child: ScrollConfiguration(
-                    behavior:
-                        const ScrollBehavior().copyWith(overscroll: false),
-                    child: PageView.builder(
-                      controller: _pageController,
-                      itemCount: onboardings.length,
-                      onPageChanged: (index) {
-                        setState(() {
-                          _currentPage = index;
-                        });
-                      },
-                      itemBuilder: (context, index) {
-                        final sliderData = onboardings[index];
-                        return OnboardingTile(
-                          imageBg: sliderData.imageBg,
-                          title: sliderData.title,
-                          subTitle: sliderData.subTitle,
+                CarouselSlider(
+                  carouselController: buttonCarouselController,
+                  options: CarouselOptions(
+                    height: MediaQuery.of(context).size.height / 1.4,
+                    animateToClosest: false,
+                    autoPlay: true,
+                    enlargeCenterPage: true,
+                    enlargeFactor: 0.3,
+
+                    autoPlayInterval: const Duration(seconds: 2),
+
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _currentPage = index;
+                      });
+                    },
+
+                    // enlargeCenterPage: true,
+                    // aspectRatio: 16 / 9,
+                    // viewportFraction: 0.8,
+                  ),
+                  items: onboardings.map((sliderData) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return Container(
+                          height: MediaQuery.of(context).size.height / 1.4,
+                          width: double.infinity,
+                          margin: const EdgeInsets.symmetric(horizontal: 1),
+                          child: OnboardingTile(
+                            imageBg: sliderData.imageBg,
+                            title: sliderData.title,
+                            subTitle: sliderData.subTitle,
+                          ),
                         );
                       },
-                    ),
-                  ),
+                    );
+                  }).toList(),
                 ),
                 Positioned(
                   bottom: 16,
-                  left: 16,
+                  left: 60,
                   child: Row(
                     children: [
                       ...List.generate(
@@ -113,10 +131,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           const SizedBox(
             height: 35,
           ),
-          const ButtonTile(
+          ButtonTile(
             text: 'Create account',
             textColor: Colors.white,
-            buttonColor: Color(0xFF332C54),
+            buttonColor: const Color(0xFF332C54),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => const LoginScreen()));
+            },
           ),
           const SizedBox(
             height: 12,
@@ -126,8 +148,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             textColor: const Color(0xFF332C54),
             borderColor: const Color(0xFF332C54),
             onTap: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => const LoginScreen()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => const LoginScreen()));
             },
           ),
         ],
