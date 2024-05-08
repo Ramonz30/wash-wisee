@@ -13,22 +13,32 @@ class ReusableTextField extends StatelessWidget {
   final double? textSize;
   final double? width;
   final double? height;
+  final int? maxLines;
+  final double? borderRadius;
+  final EdgeInsets? padding;
+  final Widget? prefixIcon;
+  final bool? filled;
   final void Function(String? p1)? onSaved;
-  const ReusableTextField(
-      {Key? key,
-      this.hintText,
-      this.controller,
-      required this.onTap,
-      this.validator,
-      this.obscure,
-      this.iconButton,
-      this.initialValue,
-      this.textInputType,
-      this.textSize,
-      this.width,
-      this.height,
-      this.onSaved})
-      : super(key: key);
+  const ReusableTextField({
+    Key? key,
+    this.hintText,
+    this.controller,
+    required this.onTap,
+    this.validator,
+    this.obscure,
+    this.iconButton,
+    this.initialValue,
+    this.textInputType,
+    this.textSize,
+    this.width,
+    this.height,
+    this.onSaved,
+    this.maxLines,
+    this.borderRadius,
+    this.padding,
+    this.prefixIcon,
+    this.filled,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +48,7 @@ class ReusableTextField extends StatelessWidget {
       // height: height ?? 53,
       child: TextFormField(
         initialValue: initialValue,
+        maxLines: maxLines,
         style: TextStyle(
           color: Colors.black,
           fontSize: textSize ?? 14,
@@ -54,24 +65,26 @@ class ReusableTextField extends StatelessWidget {
           border: InputBorder.none,
           hintText: hintText,
           // labelText: 'i3dn3kdnk3dn',
+          prefixIcon: prefixIcon ?? prefixIcon,
           suffixIcon: iconButton ?? iconButton,
-          hintStyle: GoogleFonts.montserrat(
+          hintStyle: GoogleFonts.livvic(
             fontSize: 14.0,
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w400,
             color: Colors.black38,
           ),
 
           labelStyle: const TextStyle(fontSize: 16.0, color: Colors.grey),
-          contentPadding: const EdgeInsets.only(top: 5, left: 20, right: 10),
+          contentPadding:
+              padding ?? const EdgeInsets.only(top: 5, left: 20, right: 10),
           enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(borderRadius ?? 30),
             borderSide: const BorderSide(
               width: 1,
               color: Colors.black38,
             ),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(borderRadius ?? 30),
             borderSide: const BorderSide(
               width: 1,
               color: Colors.black38,
@@ -80,20 +93,21 @@ class ReusableTextField extends StatelessWidget {
             // borderSide: const BorderSide(width: 1.5, color: Colors.grey),
           ),
           errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(borderRadius ?? 30),
             borderSide: const BorderSide(
               width: 1,
               color: Colors.black38,
             ),
           ),
           focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(borderRadius ?? 30),
             borderSide: const BorderSide(
               width: 1,
               color: Colors.black38,
             ),
           ),
-          filled: false,
+          filled: filled ?? false,
+          fillColor: filled != null ? Colors.grey.shade50 : Colors.transparent,
         ),
         onTap: onTap,
         validator: validator,

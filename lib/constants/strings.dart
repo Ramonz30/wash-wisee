@@ -1,3 +1,5 @@
+import 'package:laundry_app/constants/constant.dart';
+import 'package:laundry_app/models/category_model.dart';
 import 'package:laundry_app/models/onbording_model.dart';
 
 List<OnboardingModel> onboardings = [
@@ -15,5 +17,24 @@ List<OnboardingModel> onboardings = [
     imageBg: 'assets/images/onboarding_3.png',
     title: 'No time for laundry?',
     subTitle: 'Digitalize your laundry service with washwisee.',
+  ),
+];
+
+List<CategoryModel> categories = [
+  CategoryModel(
+    categoryColor: AppColors.primary,
+    text: 'Wash and fold',
+  ),
+  CategoryModel(
+    categoryColor: AppColors.dc,
+    text: 'Dry cleaning',
+  ),
+  CategoryModel(
+    categoryColor: AppColors.sr,
+    text: 'Stain removal',
+  ),
+  CategoryModel(
+    categoryColor: AppColors.ip,
+    text: 'Ironing/pressing',
   ),
 ];

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:laundry_app/constants/constant.dart';
 import 'package:laundry_app/widgets/button_tile.dart';
+
+import '../../widgets/text_field.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -11,53 +14,70 @@ class ProfileScreen extends StatelessWidget {
     final device = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text('Profile'),
         backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-        centerTitle: true,
-        toolbarHeight: device.height / 8,
-        elevation: 0,
+        elevation: 0.0,
+        automaticallyImplyLeading: false,
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Center(
+            child: SvgPicture.asset(
+              SvgIcon.backIcon,
+              height: 28,
+              width: 28,
+            ),
+          ),
+        ),
+        title: Text(
+          'Profile',
+          style: GoogleFonts.livvic(
+            fontWeight: FontWeight.w600,
+            fontSize: 18,
+            color: Colors.black,
+            letterSpacing: 0.5,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox.square(
-                dimension: 130,
-                child: Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    const Align(
-                      alignment: Alignment.topCenter,
-                      child: CircleAvatar(
-                        radius: 60,
-                        backgroundColor: Colors.black,
-                        foregroundColor: Colors.white,
-                        child: Text(
-                          'A',
-                          style: TextStyle(fontSize: 60),
+              Align(
+                alignment: Alignment.topCenter,
+                child: Stack(children: [
+                  const CircleAvatar(
+                    radius: 45,
+                    backgroundColor: Colors.black,
+                    foregroundColor: Colors.white,
+                    child: Text(
+                      'A',
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 1,
+                    right: 5,
+                    child: Container(
+                      height: 27,
+                      width: 27,
+                      decoration: const ShapeDecoration(
+                        shape: CircleBorder(),
+                        color: AppColors.primary,
+                      ),
+                      child: Center(
+                        child: SvgPicture.asset(
+                          SvgIcon.edit,
+                          height: 13,
+                          width: 13,
                         ),
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: Container(
-                        padding: const EdgeInsets.all(8.0),
-                        decoration: const ShapeDecoration(
-                          shape: CircleBorder(),
-                          color: AppColors.primary,
-                        ),
-                        child: SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: SvgPicture.asset(SvgIcon.edit),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ]),
               ),
               const SizedBox(
                 height: 10,
@@ -71,23 +91,45 @@ class ProfileScreen extends StatelessWidget {
                 style: TextStyle(fontWeight: FontWeight.w400),
               ),
               const SizedBox(
-                height: 20,
+                height: 40,
               ),
-              ListView(
-                shrinkWrap: true,
-                children: const [
-                  ButtonTile(
-                    text: 'Save Changes',
-                    textColor: Colors.white,
-                    buttonColor: AppColors.primary,
-                  ),
-                  SizedBox(height: 12),
-                  ButtonTile(
-                    text: 'Cancel',
-                    textColor: AppColors.primary,
-                    borderColor: Colors.black,
-                  ),
-                ],
+              ReusableTextField(
+                initialValue: 'Adeshina@washwisee.com',
+                obscure: false,
+                iconButton: null,
+                onTap: () {},
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              ReusableTextField(
+                initialValue: 'Adeshina',
+                obscure: false,
+                iconButton: null,
+                onTap: () {},
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              ReusableTextField(
+                initialValue: 'Abubakri',
+                obscure: false,
+                iconButton: null,
+                onTap: () {},
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              const ButtonTile(
+                text: 'Save Changes',
+                textColor: Colors.white,
+                buttonColor: AppColors.primary,
+              ),
+              const SizedBox(height: 12),
+              const ButtonTile(
+                text: 'Cancel',
+                textColor: AppColors.primary,
+                borderColor: Colors.black,
               ),
             ],
           ),

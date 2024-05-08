@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:laundry_app/constants/constant.dart';
+import 'package:laundry_app/navigation_screen.dart';
 import 'package:laundry_app/widgets/google_login_btn.dart';
 import 'package:laundry_app/widgets/text_field.dart';
 
@@ -106,7 +107,10 @@ class _LoginScreenState extends State<LoginScreen> {
               FractionallySizedBox(
                 widthFactor: 1,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context, MaterialPageRoute(builder: (_) => const NavBar()));
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary,
                     foregroundColor: Colors.white,

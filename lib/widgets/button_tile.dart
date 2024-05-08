@@ -27,8 +27,8 @@ class ButtonTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: height ?? 55,
-        width: height ?? 327,
+        height: height ?? 52,
+        width: width ?? double.infinity,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(radius ?? 30),
             color: buttonColor ?? Colors.transparent,
