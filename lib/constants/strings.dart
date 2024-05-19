@@ -38,3 +38,22 @@ List<CategoryModel> categories = [
     text: 'Ironing/pressing',
   ),
 ];
+
+final List<Map<String, dynamic>> textImage = [
+  {
+    "image": ImageHelper.press,
+    "text": 'Adeyemo Wash',
+  },
+  {
+    "image": ImageHelper.dry,
+    "text": 'Jimon Wash',
+  },
+  {
+    "image": ImageHelper.clean,
+    "text": 'Jimon Wash',
+  },
+  {
+    "image": ImageHelper.press,
+    "text": 'Jimon Wash',
+  }
+];

@@ -4,9 +4,35 @@ String appName = 'Wash wisee';
 
 class AppColors {
   static const primary = Color.fromRGBO(51, 44, 84, 1);
+
+  static const Color whiteColor = Color(0xffFFFFFF);
+  static const Color textFieldFillColor = Color(0xffFAFAFA);
+  static const Color mediumLightGrey = Color(0xff828280);
+  static const Color deepBlurColor = Color(0xff141B34);
+  static const Color lightGrey = Color(0xffEFEFEF);
+  static const Color mediumGrey = Color(0xff9D9D9D);
+  static const Color blackColor = Color(0xff000000);
+  static const Color greyColor = Color(0xffE2E8F0);
+  static const Color hintTextColor = Color(0xff94A3B8);
+  static const Color txtFieldIconColor = Color(0xff64748B);
+  static const Color purpleColor = Color(0xff332C54);
+  static const Color litePurpleColor = Color(0xff9EA5B7);
+  static const Color gray = Color(0xff818893);
   static const dc = Color(0xff544F2C);
   static const sr = Color(0xffA9A690);
   static const ip = Color(0xffFEF29C);
+}
+
+class ImageHelper {
+  ImageHelper._();
+  static const String profileImage =
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlYNWyKBbun6mL-S4HTSJ2JyH9HdHRI5PITkJ-lXlBbQ&s";
+  static const String wash = 'assets/images/wash.png';
+  static const String press = 'assets/images/press.png';
+  static const String dry = 'assets/images/dry.png';
+  static const String clean = 'assets/images/clean.png';
+  static const String profile2Image =
+      "https://fcdrycleaners.com/wp-content/uploads/2023/11/How-Much-Does-A-Load-Of-Laundry-Cost-At-Home_-Home-vs-Laundromat-Costs.jpg";
 }
 
 class SvgIcon {

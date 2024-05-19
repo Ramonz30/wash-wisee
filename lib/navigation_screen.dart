@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:laundry_app/views/booking/booking_page.dart';
 import 'package:laundry_app/views/settings/settings_screen.dart';
 
 import 'constants/constant.dart';
@@ -18,12 +19,7 @@ class _NavBarState extends State<NavBar> {
 
   final List<Widget> screens = [
     const HomeScreen(),
-    const Center(
-      child: Text(
-        'Not yet implemented',
-        style: TextStyle(color: Colors.red),
-      ),
-    ),
+    const BookingPage(),
     const SettingsScreen(),
   ];
   @override

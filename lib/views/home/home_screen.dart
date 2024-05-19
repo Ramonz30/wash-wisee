@@ -2,15 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:laundry_app/constants/strings.dart';
+import 'package:laundry_app/views/services/dry.dart';
+import 'package:laundry_app/views/services/pressing.dart';
+import 'package:laundry_app/views/services/stain.dart';
+import 'package:laundry_app/views/services/wash.dart';
 import 'package:laundry_app/widgets/text_field.dart';
 
 import '../../constants/constant.dart';
+import '../notification/notification_page.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> pages = [
+      Wash(),
+      Dry(),
+      Stain(),
+      Pressing(),
+    ];
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -62,10 +73,18 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
-                    SvgPicture.asset(
-                      SvgIcon.notification,
-                      height: 24,
-                      width: 24,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => NotificationPage()));
+                      },
+                      child: SvgPicture.asset(
+                        SvgIcon.notification,
+                        height: 24,
+                        width: 24,
+                      ),
                     ),
                   ],
                 ),
@@ -116,9 +135,16 @@ class HomeScreen extends StatelessWidget {
                   shrinkWrap: true,
                   itemBuilder: (BuildContext context, int index) {
                     final data = categories[index];
-                    return ServiceCategory(
-                      categoryColor: data.categoryColor,
-                      text: data.text,
+                    final serviceData = pages[index];
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => serviceData));
+                      },
+                      child: ServiceCategory(
+                        categoryColor: data.categoryColor,
+                        text: data.text,
+                      ),
                     );
                   },
                 ),
@@ -202,7 +228,9 @@ class HomeScreen extends StatelessWidget {
           Row(
             children: [
               SvgPicture.asset(SvgIcon.locationDropIcon),
-              const SizedBox(width: 5,),
+              const SizedBox(
+                width: 5,
+              ),
               Text(
                 'Atlantic height',
                 style: GoogleFonts.livvic(
