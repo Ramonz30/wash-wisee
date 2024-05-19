@@ -39,6 +39,8 @@ dependencies:
   flutter_svg: ^2.0.10+1
   carousel_slider: ^4.0.0
   dotted_border: ^2.1.0
+  intl:
+  get:
 
   flutter_animator:
 
