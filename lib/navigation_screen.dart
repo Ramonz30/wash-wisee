@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:laundry_app/views/booking/booking_page.dart';
+import 'package:laundry_app/views/chat/chat_screen.dart';
+
 import 'package:laundry_app/views/settings/settings_screen.dart';
 
 import 'constants/constant.dart';
@@ -19,6 +21,7 @@ class _NavBarState extends State<NavBar> {
 
   final List<Widget> screens = [
     const HomeScreen(),
+    const ChatScreen(),
     const BookingPage(),
     const SettingsScreen(),
   ];
@@ -32,62 +35,69 @@ class _NavBarState extends State<NavBar> {
           ),
         ],
       ),
-      bottomNavigationBar: ClipPath(
-        child: Container(
-          height: 70,
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          width: MediaQuery.of(context).size.width / 0.04,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(0),
-            border: Border(
-              top: BorderSide(
-                color: Colors.grey.withOpacity(0.5),
-                width: 1.2,
-              ),
+      bottomNavigationBar: Container(
+        height: 70,
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        width: MediaQuery.of(context).size.width / 0.04,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(0),
+          // //border: Border(
+          //   top: BorderSide(
+          //     color: Colors.grey.withOpacity(0.5),
+          //     width: 1.2,
+          //   ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            navButton(
+              onTap: () {
+                setState(() {
+                  _currentIndex = 0;
+                });
+              },
+              iconPath:
+                  _currentIndex == 0 ? SvgIcon.homeFillIcon : SvgIcon.homeIcon,
+              currentIndex: 0,
+              text: 'Home',
             ),
-            color: Colors.white,
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              navButton(
-                onTap: () {
-                  setState(() {
-                    _currentIndex = 0;
-                  });
-                },
-                iconPath: _currentIndex == 0
-                    ? SvgIcon.homeFillIcon
-                    : SvgIcon.homeIcon,
-                currentIndex: 0,
-                text: 'Home',
-              ),
-              navButton(
-                onTap: () {
-                  setState(() {
-                    _currentIndex = 1;
-                  });
-                },
-                iconPath: _currentIndex == 1
-                    ? SvgIcon.bookingFillIcon
-                    : SvgIcon.bookingIcon,
-                currentIndex: 1,
-                text: 'Bookings',
-              ),
-              navButton(
-                onTap: () {
-                  setState(() {
-                    _currentIndex = 2;
-                  });
-                },
-                iconPath: _currentIndex == 2
-                    ? SvgIcon.settingsFillIcon
-                    : SvgIcon.settingsIcon,
-                currentIndex: 2,
-                text: 'Settings',
-              ),
-            ],
-          ),
+            navButton(
+              onTap: () {
+                setState(() {
+                  _currentIndex = 1;
+                });
+              },
+              iconPath:
+                  _currentIndex == 1 ? SvgIcon.chatFilledIcon : SvgIcon.chat,
+              currentIndex: 1,
+              text: 'Chat',
+            ),
+            navButton(
+              onTap: () {
+                setState(() {
+                  _currentIndex = 2;
+                });
+              },
+              iconPath: _currentIndex == 2
+                  ? SvgIcon.bookingFillIcon
+                  : SvgIcon.bookingIcon,
+              currentIndex: 2,
+              text: 'Bookings',
+            ),
+            navButton(
+              onTap: () {
+                setState(() {
+                  _currentIndex = 3;
+                });
+              },
+              iconPath: _currentIndex == 3
+                  ? SvgIcon.settingsFillIcon
+                  : SvgIcon.settingsIcon,
+              currentIndex: 3,
+              text: 'Settings',
+            ),
+          ],
         ),
       ),
     );

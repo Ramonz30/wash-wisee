@@ -33,7 +33,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   void initState() {
     super.initState();
-    _startAutoScroll();
+    //_startAutoScroll();
   }
 
   void _startAutoScroll() {

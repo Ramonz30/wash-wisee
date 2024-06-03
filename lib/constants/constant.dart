@@ -44,6 +44,8 @@ class SvgIcon {
   static const helpCircle = 'assets/svg_icons/help-circle.svg';
   static const location = 'assets/svg_icons/location.svg';
   static const lock = 'assets/svg_icons/lock.svg';
+  static const chat = 'assets/svg_icons/chat.svg';
+  static const chatFilledIcon = 'assets/svg_icons/chatfilledicon.svg';
   static const logout = 'assets/svg_icons/logout.svg';
   static const notification = 'assets/svg_icons/notification.svg';
   static const user = 'assets/svg_icons/user.svg';
